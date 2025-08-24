@@ -14,33 +14,38 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    /* Base */
     :root{ --bg:#0b0f10; --fg:#111; --muted:#6e7b85; --brand:#0a5e56; --brand-2:#14b8a6; --card:#ffffff; --soft:#f2f5f7; --ring:rgba(20,184,166,.35); }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#0f172a;background:#f7fafc}
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#0f172a;background:#f7fafc}
     a{color:var(--brand);text-decoration:none}
 
-    /* Containers with safe area spacing */
-    .container{max-width:1100px;margin:0 auto;padding-inline:clamp(20px,6vw,32px);padding-left:max(clamp(20px,6vw,32px), env(safe-area-inset-left));padding-right:max(clamp(20px,6vw,32px), env(safe-area-inset-right))}
+    /* Layout container with safe-area spacing */
+    .container{max-width:1100px;margin:0 auto;
+      padding-left:calc(clamp(20px,6vw,32px) + env(safe-area-inset-left));
+      padding-right:calc(clamp(20px,6vw,32px) + env(safe-area-inset-right));
+    }
 
     /* Header */
-    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid #e6eef2}
+    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid #e6eef2}
     .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
     .brand{display:flex;gap:12px;align-items:center}
-    .brand img{width:70px;height:70px;border-radius:14px;object-fit:cover} /* increased by ~25% */
+    .brand img{width:70px;height:70px;border-radius:14px;object-fit:cover}
+    .btn-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:1px solid #e6eef2;background:#fff;font-weight:600}
     .cta{display:inline-flex;gap:10px;align-items:center;background:var(--brand);color:#fff;padding:10px 16px;border-radius:12px;font-weight:600;border:1px solid transparent;box-shadow:0 6px 14px -6px var(--ring)}
     .cta:hover{background:#0d6e65}
-    .pill{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:1px solid #e6eef2;background:#fff;font-weight:600}
-    .btn-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 
     /* Hero */
     .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;padding:48px 0 28px;align-items:center}
-    .hero .copy{max-width:680px;margin-inline:auto}
+    .hero .copy{max-width:700px}
     .hero h2{font-size:40px;line-height:1.1;margin:0 0 12px}
     .hero p{font-size:18px;color:#425466;margin:0 0 20px}
     .badges{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0 22px}
     .badge{background:#e8fffb;color:#065f46;padding:8px 12px;border-radius:999px;font-weight:600;font-size:13px;border:1px solid #b6fff4}
-    .hero .panel{background:var(--card);border:1px solid #e6eef2;border-radius:18px;overflow:hidden;box-shadow:0 10px 24px -12px rgba(10,94,86,.25)}
-    .hero .panel img{display:block;width:100%;height:320px;object-fit:cover}
+    .panel{background:var(--card);border:1px solid #e6eef2;border-radius:18px;overflow:hidden;box-shadow:0 10px 24px -12px rgba(10,94,86,.25)}
+    .panel img{display:block;width:100%;height:320px;object-fit:cover}
 
     /* Sections */
     section{padding:38px 0}
@@ -74,17 +79,17 @@
     footer{padding:32px 0;color:#5b6772}
     .footer-grid{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center}
 
-    /* Responsive tweaks */
+    /* Responsive */
     @media (max-width: 900px){
       .hero{grid-template-columns:1fr}
       .grid.cols-3{grid-template-columns:1fr 1fr}
       .shot{grid-column:span 6}
     }
     @media (max-width: 640px){
-      .nav{padding:0}
+      .nav{height:68px}
       .btn-row{gap:8px}
       .cta,.pill{padding:10px 12px;font-size:14px}
-      .hero{padding:24px 0 12px}
+      .hero{padding:26px 0 14px}
       .hero .copy{max-width:560px;margin-inline:auto}
       .hero h2{font-size:24px;line-height:1.25}
       .hero p{font-size:15px}
@@ -94,6 +99,162 @@
       .grid.cols-3{grid-template-columns:1fr}
       .shot{grid-column:span 12}
       .contact{grid-template-columns:1fr}
-      .hero .panel img{height:260px}
+      .panel img{height:260px}
     }
   </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <img src="logo.jpg" alt="Builders NB logo" />
+      </div>
+      <div class="btn-row">
+        <a class="pill" href="tel:+15062921434">Call: +1 (506) 292-1434</a>
+        <a class="cta" href="#contact">Free Estimate</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="container hero">
+      <div class="copy">
+        <h2>Quality Kitchens, Bathrooms & Basements — Built to Last</h2>
+        <p>Local renovations with <strong>free estimates</strong> and <strong>honest advice</strong>. Serving homeowners in <strong>Fredericton</strong>.</p>
+        <div class="badges">
+          <span class="badge">On-Time • On-Budget</span>
+          <span class="badge">Clean & Respectful</span>
+        </div>
+        <div class="btn-row">
+          <a class="cta" href="#contact">Request Free Estimate</a>
+          <a class="pill" href="#gallery">See Recent Work</a>
+        </div>
+      </div>
+      <div class="panel">
+        <img src="hero.jpg" alt="Renovated modern bathroom with tile and glass shower" />
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="container" id="services">
+      <h2 class="section-title">Services</h2>
+      <p class="section-sub">No project is too small — from fixing a toilet to finishing your dream basement.</p>
+      <div class="grid cols-3">
+        <div class="card"><h3>Bathroom Renovations</h3><p>Complete remodels, tiling, showers, tubs, vanities, plumbing updates.</p></div>
+        <div class="card"><h3>Kitchen Remodeling</h3><p>Cabinets, countertops, backsplash, flooring, lighting, layout updates.</p></div>
+        <div class="card"><h3>Basement Finishing</h3><p>Framing, drywall, flooring, bathroom additions, legal egress upgrades.</p></div>
+        <div class="card"><h3>Tiling & Flooring</h3><p>Ceramic, porcelain, LVP, hardwood — durable installs done right.</p></div>
+        <div class="card"><h3>Repairs & Small Jobs</h3><p>Toilet installs, leak fixes, trim, doors, paint — we handle the details.</p></div>
+        <div class="card"><h3>General Contracting</h3><p>Planning, permits, and coordination for stress-free renovations.</p></div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="container" id="gallery">
+      <h2 class="section-title">Recent Work</h2>
+      <p class="section-sub">Here are some of our latest projects.</p>
+      <div class="gallery">
+        <figure class="shot"><img src="work-1.jpg" alt="Project photo 1" /></figure>
+        <figure class="shot"><img src="work-2.jpg" alt="Project photo 2" /></figure>
+        <figure class="shot"><img src="work-3.jpg" alt="Project photo 3" /></figure>
+        <figure class="shot"><img src="work-4.jpg" alt="Project photo 4" /></figure>
+        <figure class="shot"><img src="work-5.jpg" alt="Project photo 5" /></figure>
+        <figure class="shot"><img src="work-6.jpg" alt="Project photo 6" /></figure>
+        <figure class="shot"><img src="work-7.jpg" alt="Project photo 7" /></figure>
+        <figure class="shot"><img src="work-8.jpg" alt="Project photo 8" /></figure>
+        <figure class="shot"><img src="work-9.jpg" alt="Project photo 9" /></figure>
+        <figure class="shot"><img src="work-10.jpg" alt="Project photo 10" /></figure>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section class="container" id="why">
+      <h2 class="section-title">Why Choose Us</h2>
+      <ul class="list">
+        <li>Free estimates and straightforward pricing</li>
+        <li>Quality workmanship — we don't cut corners</li>
+        <li>Respectful of your home — clean, careful, and on-time</li>
+        <li>Local and trusted with references upon request</li>
+      </ul>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="container" id="contact">
+      <h2 class="section-title">Get a Free Estimate</h2>
+      <p class="section-sub">Tell us a bit about your project and how to reach you. We'll reply within one business day.</p>
+      <div class="contact">
+        <form id="estimate-form" action="https://formspree.io/f/your_form_id" method="POST">
+          <label for="name">Your Name</label>
+          <input id="name" name="name" required placeholder="John Doe" />
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" required placeholder="(506) 292-1434" />
+          <label for="email">Email</label>
+          <input id="email" type="email" name="email" required placeholder="you@email.com" />
+          <label for="service">Service</label>
+          <input id="service" name="service" placeholder="Bathroom, Kitchen, Basement, Repairs…" />
+          <label for="message">Project Details</label>
+          <textarea id="message" name="message" placeholder="Tell us about your space, timeline, and budget."></textarea>
+          <input type="hidden" name="subject" value="New Free Estimate Request" />
+          <button class="cta" type="submit">Send Request</button>
+          <p class="help">Prefer a call or email? Use the buttons on the right.</p>
+        </form>
+        <div>
+          <div class="card">
+            <h3>Contact</h3>
+            <p><strong>Phone:</strong> <a href="tel:+15062921434">+1 (506) 292-1434</a></p>
+            <p><strong>Email:</strong> <a href="mailto:afenech94@gmail.com">afenech94@gmail.com</a></p>
+            <p><strong>Service Area:</strong> Fredericton</p>
+            <div class="btn-row" style="margin-top:8px">
+              <a class="pill" href="mailto:afenech94@gmail.com?subject=Free%20Estimate%20Request&body=Hi%2C%20I%27d%20like%20a%20free%20estimate%20for%3A%20">Email Us</a>
+              <a class="pill" href="tel:+15062921434">Call Us</a>
+            </div>
+          </div>
+          <div class="card" style="margin-top:12px">
+            <h3>Business Hours</h3>
+            <p>Mon–Fri: 8:00–18:00</p>
+            <p>Sat: 9:00–14:00</p>
+            <p>Sun: Closed</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <p class="muted">© <span id="year"></span> Builders NB. All rights reserved.</p>
+      <div class="socials"></div>
+    </div>
+  </footer>
+
+  <script>
+    // Current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Form fallback to email if Formspree endpoint not configured
+    (function(){
+      var form = document.getElementById('estimate-form');
+      if(!form) return;
+      form.addEventListener('submit', function(e){
+        var action = form.getAttribute('action') || '';
+        if(action.indexOf('your_form_id') !== -1){
+          e.preventDefault();
+          var mail = 'afenech94@gmail.com';
+          var subject = encodeURIComponent('Free Estimate Request');
+          var lines = [
+            'Name: ' + (document.getElementById('name').value||''),
+            'Phone: ' + (document.getElementById('phone').value||''),
+            'Email: ' + (document.getElementById('email').value||''),
+            'Service: ' + (document.getElementById('service').value||''),
+            '',
+            'Details:',
+            (document.getElementById('message').value||'')
+          ];
+          window.location.href = 'mailto:' + mail + '?subject=' + subject + '&body=' + encodeURIComponent(lines.join('\n'));
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
